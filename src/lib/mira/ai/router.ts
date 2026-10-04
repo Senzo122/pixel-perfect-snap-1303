@@ -21,8 +21,8 @@ export function pickModel(task: TaskType, plan: PlanId): ModelDef | null {
   const candidates = MODELS.filter((m) => m.kinds.includes(kind) && isAllowed(m, plan));
   if (!candidates.length) return null;
   // Simple tasks prefer cheaper models; heavier tasks prefer the best allowed.
-  if (task === "chat") return [...candidates].sort((a, b) => a.quality - b.quality)[0];
-  return [...candidates].sort((a, b) => b.quality - a.quality)[0];
+  if (task === "chat") return [...candidates].sort((a, b) => a.quality - b.quality)[0] ?? null;
+  return [...candidates].sort((a, b) => b.quality - a.quality)[0] ?? null;
 }
 
 export const taskForModel = (m: ModelDef, text: string, hasFiles: boolean): TaskType => {

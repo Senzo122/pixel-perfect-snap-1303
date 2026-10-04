@@ -8,10 +8,10 @@ import {
   DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-export interface ComposerSubmit { text: string; files: Attachment[]; modelId: string | null; forceTask?: "image" }
+export interface ComposerSubmit { text: string; files: Attachment[]; modelId: string | null; forceTask?: "image" | undefined }
 
 export function Composer({ onSubmit, disabled, autoFocus, placeholder = "Demandez n’importe quoi à Mira" }: {
-  onSubmit: (v: ComposerSubmit) => void; disabled?: boolean; autoFocus?: boolean; placeholder?: string;
+  onSubmit: (v: ComposerSubmit) => void; disabled?: boolean | undefined; autoFocus?: boolean | undefined; placeholder?: string | undefined;
 }) {
   const manual = useMira((s) => s.manualMode);
   const [text, setText] = useState("");
