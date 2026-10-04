@@ -19,8 +19,8 @@ function seedUsers(): User[] {
   const names = ["Léa Martin", "Hugo Bernard", "Chloé Petit", "Nathan Roux", "Inès Moreau", "Tom Garnier", "Sarah Lambert", "Yanis Faure"];
   const plans: PlanId[] = ["free", "plus", "free", "pro", "free", "plus", "free", "free"];
   return names.map((n, i) => ({
-    id: `seed-${i}`, name: n, email: `${n.split(" ")[0].toLowerCase()}@exemple.fr`, role: "user", provider: ["google", "apple", "email", "discord"][i % 4],
-    plan: plans[i], status: i === 6 ? "suspended" : "active", createdAt: now() - (i + 2) * 5 * DAY, lastActive: now() - i * 7 * HOUR,
+    id: `seed-${i}`, name: n, email: `${(n.split(" ")[0] ?? n).toLowerCase()}@exemple.fr`, role: "user", provider: ["google", "apple", "email", "discord"][i % 4] ?? "email",
+    plan: plans[i] ?? "free", status: i === 6 ? "suspended" : "active", createdAt: now() - (i + 2) * 5 * DAY, lastActive: now() - i * 7 * HOUR,
   }));
 }
 
@@ -96,7 +96,7 @@ export function signIn(provider: string, email: string, name?: string) {
   }
   // Simulated backend rule: the first account created on this instance owns it (admin).
   const isFirstReal = !state.users.some((u) => !u.id.startsWith("seed-"));
-  const user: User = { id: uid(), name: name || email.split("@")[0], email, role: isFirstReal ? "admin" : "user", provider, plan: "free", status: "active", createdAt: now(), lastActive: now() };
+  const user: User = { id: uid(), name: name || email.split("@")[0] || email, email, role: isFirstReal ? "admin" : "user", provider, plan: "free", status: "active", createdAt: now(), lastActive: now() };
   set((s) => ({ users: [...s.users, user], sessionUserId: user.id, credits: { balance: s.plans.free.creditsPerHour, lastRefill: now() } }));
 }
 export const signOut = () => set(() => ({ sessionUserId: null }));
