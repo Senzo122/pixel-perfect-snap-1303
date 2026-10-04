@@ -1,7 +1,7 @@
 import { Check, ChevronDown, Lock, Wand2 } from "lucide-react";
 import { MODELS, PROVIDERS, type ProviderId } from "@/lib/mira/config";
 import { isAllowed } from "@/lib/mira/ai/router";
-import { currentPlan, getState, useMira } from "@/lib/mira/store";
+import { currentPlan, useMira } from "@/lib/mira/store";
 import { ProviderLogo } from "./ProviderLogo";
 import {
   DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger,
@@ -53,4 +53,3 @@ export function ModelPicker({ value, onChange }: { value: string | null; onChang
 }
 
 export const modelName = (id?: string) => MODELS.find((m) => m.id === id);
-export const _unused = getState;
