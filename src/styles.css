@@ -63,8 +63,8 @@
   --color-warning: var(--warning);
   --color-user-bubble: var(--user-bubble);
   --color-user-bubble-foreground: var(--user-bubble-foreground);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
+  --font-sans: var(--mira-sans);
+  --font-mono: var(--mira-mono);
   --animate-rise: rise 0.35s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
@@ -75,8 +75,8 @@
 
 :root {
   --radius: 0.75rem;
-  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "Geist Mono", ui-monospace, monospace;
+  --mira-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --mira-mono: "Geist Mono", ui-monospace, monospace;
   --background: oklch(0.995 0 0);
   --foreground: oklch(0.17 0 0);
   --card: oklch(0.975 0 0);
@@ -162,7 +162,7 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
-    font-family: var(--font-sans);
+    font-family: var(--mira-sans);
     -webkit-font-smoothing: antialiased;
   }
   ::selection { background: var(--color-accent); }
