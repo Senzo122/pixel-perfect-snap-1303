@@ -87,7 +87,7 @@ function log(action: string, target: string) {
 }
 
 // ---------- auth (simulated) ----------
-export function signIn(provider: string, email: string, name?: string) {
+export function signIn(provider: string, email: string, name?: string | undefined) {
   const existing = state.users.find((u) => u.email.toLowerCase() === email.toLowerCase());
   if (existing) {
     if (existing.status === "suspended") throw new Error("Ce compte est suspendu.");
@@ -121,7 +121,7 @@ export function redeemCode(raw: string): { ok: boolean; message: string } {
 }
 
 // ---------- conversations ----------
-export function createConversation(projectId?: string): string {
+export function createConversation(projectId?: string | undefined): string {
   const c: Conversation = { id: uid(), title: "Nouveau chat", pinned: false, projectId, createdAt: now(), updatedAt: now(), messages: [] };
   set((s) => ({ conversations: [c, ...s.conversations] }));
   return c.id;
@@ -132,7 +132,7 @@ export const togglePin = (id: string) => patchConv(id, (c) => ({ ...c, pinned: !
 export const renameConversation = (id: string, title: string) => patchConv(id, (c) => ({ ...c, title }));
 export const deleteConversation = (id: string) => set((s) => ({ conversations: s.conversations.filter((c) => c.id !== id), artifacts: s.artifacts.filter((a) => a.conversationId !== id) }));
 
-export interface SendOptions { modelId?: string | null; files?: Attachment[]; forceTask?: "image" }
+export interface SendOptions { modelId?: string | null | undefined; files?: Attachment[] | undefined; forceTask?: "image" | undefined }
 
 export async function sendMessage(convId: string, text: string, opts: SendOptions = {}): Promise<{ error?: string }> {
   refillIfNeeded();
@@ -241,7 +241,7 @@ export function adminGenerateCodes(plan: "plus" | "pro", days: number, count: nu
   set((s) => ({ giftCodes: [...codes, ...s.giftCodes] }));
   log(`Génération de ${count} code(s) ${plan}`, `${days} jours`);
 }
-export function adminUpdateFlag(id: string, status: "open" | "reviewing" | "resolved", action?: string) {
+export function adminUpdateFlag(id: string, status: "open" | "reviewing" | "resolved", action?: string | undefined) {
   set((s) => ({ moderation: s.moderation.map((f) => (f.id === id ? { ...f, status, action: action ?? f.action } : f)) }));
   log(`Signalement → ${status}${action ? ` (${action})` : ""}`, id);
 }
