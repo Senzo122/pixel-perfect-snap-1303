@@ -8,14 +8,14 @@ export interface AIRequest {
   prompt: string;
   files: string[];
   /** Current artifact content when the user is iterating on it. */
-  artifact?: { kind: ArtifactKind | undefined; content: string; title: string };
+  artifact?: { kind: ArtifactKind; content: string; title: string } | undefined;
 }
 
 export interface AIResult {
   text: string;
   image?: string | undefined;
   video?: boolean | undefined;
-  artifact?: { kind: ArtifactKind | undefined; title: string; language: string; content: string; isEdit: boolean };
+  artifact?: { kind: ArtifactKind; title: string; language: string; content: string; isEdit: boolean } | undefined;
 }
 
 export interface AIProvider {

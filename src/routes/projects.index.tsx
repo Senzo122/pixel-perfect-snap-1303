@@ -24,7 +24,7 @@ function Projects() {
     const name = prompt("Nom du projet");
     if (!name?.trim()) return;
     const id = createProject(name.trim());
-    if (!id) return toast("Limite de projets atteinte pour votre plan.");
+    if (!id) { toast("Limite de projets atteinte pour votre plan."); return; }
     nav({ to: "/projects/$id", params: { id } });
   };
   return (

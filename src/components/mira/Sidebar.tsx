@@ -1,5 +1,5 @@
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
-import { CalendarClock, FolderOpen, Library, MoreHorizontal, Pencil, Pin, PinOff, Plug, Settings, SquarePen, Trash2, User } from "lucide-react";
+import { CalendarClock, FileSearch, FolderOpen, Library, MoreHorizontal, Pencil, Pin, PinOff, Plug, Settings, SquarePen, Trash2, User } from "lucide-react";
 import type { ReactNode } from "react";
 import { currentPlan, currentUser, deleteConversation, renameConversation, togglePin, useMira } from "@/lib/mira/store";
 import type { Conversation } from "@/lib/mira/types";
@@ -60,6 +60,7 @@ export function Sidebar() {
         <Link to="/" className={navItem} activeOptions={{ exact: true }} activeProps={active}><SquarePen className="size-4" /> Nouveau chat</Link>
         <Link to="/scheduled" className={navItem} activeProps={active}><CalendarClock className="size-4" /> Planifié</Link>
         <Link to="/library" className={navItem} activeProps={active}><Library className="size-4" /> Bibliothèque</Link>
+        <Link to="/ask" className={navItem} activeProps={active}><FileSearch className="size-4" /> Questions fichiers</Link>
         <Link to="/plugins" className={navItem} activeProps={active}><Plug className="size-4" /> Plugins</Link>
       </nav>
       <div className="mt-4 h-px bg-sidebar-border" />
