@@ -41,7 +41,7 @@ function Login() {
           {social("discord", "Discord")}
         </div>
         <div className="my-6 flex items-center gap-3 text-xs text-muted-foreground"><span className="h-px flex-1 bg-border" />ou<span className="h-px flex-1 bg-border" /></div>
-        <form className="space-y-2" onSubmit={(e) => { e.preventDefault(); if (!/.+@.+\..+/.test(email) || pw.length < 6) return toast("E-mail valide et mot de passe de 6 caractères minimum."); go("email", email); }}>
+        <form className="space-y-2" onSubmit={(e) => { e.preventDefault(); if (!/.+@.+\..+/.test(email) || pw.length < 6) { toast("E-mail valide et mot de passe de 6 caractères minimum."); return; } go("email", email); }}>
           <input className={`${input} h-11`} type="email" placeholder="E-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
           <input className={`${input} h-11`} type="password" placeholder="Mot de passe" value={pw} onChange={(e) => setPw(e.target.value)} />
           <button className={`${btnPrimary} h-11 w-full justify-center`}>Continuer</button>

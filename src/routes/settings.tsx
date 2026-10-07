@@ -12,7 +12,7 @@ type Tab = (typeof TABS)[number];
 const LABEL: Record<Tab, string> = { general: "Général", profile: "Profil", subscription: "Abonnement", usage: "Utilisation" };
 
 export const Route = createFileRoute("/settings")({
-  validateSearch: (s: Record<string, unknown>): { tab: Tab } => ({ tab: TABS.includes(s.tab as Tab) ? (s.tab as Tab) : "general" }),
+  validateSearch: (s: Record<string, unknown>): { tab: Tab } => ({ tab: TABS.includes(s["tab"] as Tab) ? (s["tab"] as Tab) : "general" }),
   head: () => ({
     meta: [
       { title: "Paramètres — Mira" },
