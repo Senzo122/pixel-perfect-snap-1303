@@ -10,10 +10,13 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as AskRouteImport } from './routes/ask'
 import { Route as LibraryRouteImport } from './routes/library'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as PluginsRouteImport } from './routes/plugins'
 import { Route as ScheduledRouteImport } from './routes/scheduled'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as ChatIdRouteImport } from './routes/chat.$id'
 import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
 import { Route as ProjectsIdRouteImport } from './routes/projects.$id'
@@ -21,6 +24,16 @@ import { Route as ProjectsIdRouteImport } from './routes/projects.$id'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AskRoute = AskRouteImport.update({
+  id: '/ask',
+  path: '/ask',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LibraryRoute = LibraryRouteImport.update({
@@ -43,6 +56,11 @@ const ScheduledRoute = ScheduledRouteImport.update({
   path: '/scheduled',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ChatIdRoute = ChatIdRouteImport.update({
   id: '/chat/$id',
   path: '/chat/$id',
@@ -61,20 +79,26 @@ const ProjectsIdRoute = ProjectsIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/ask': typeof AskRoute
   '/library': typeof LibraryRoute
   '/login': typeof LoginRoute
   '/plugins': typeof PluginsRoute
   '/scheduled': typeof ScheduledRoute
+  '/settings': typeof SettingsRoute
   '/chat/$id': typeof ChatIdRoute
   '/projects/$id': typeof ProjectsIdRoute
   '/projects/': typeof ProjectsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/ask': typeof AskRoute
   '/library': typeof LibraryRoute
   '/login': typeof LoginRoute
   '/plugins': typeof PluginsRoute
   '/scheduled': typeof ScheduledRoute
+  '/settings': typeof SettingsRoute
   '/chat/$id': typeof ChatIdRoute
   '/projects/$id': typeof ProjectsIdRoute
   '/projects': typeof ProjectsIndexRoute
@@ -82,10 +106,13 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/ask': typeof AskRoute
   '/library': typeof LibraryRoute
   '/login': typeof LoginRoute
   '/plugins': typeof PluginsRoute
   '/scheduled': typeof ScheduledRoute
+  '/settings': typeof SettingsRoute
   '/chat/$id': typeof ChatIdRoute
   '/projects/$id': typeof ProjectsIdRoute
   '/projects/': typeof ProjectsIndexRoute
@@ -94,30 +121,39 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin'
+    | '/ask'
     | '/library'
     | '/login'
     | '/plugins'
     | '/scheduled'
+    | '/settings'
     | '/chat/$id'
     | '/projects/$id'
     | '/projects/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/admin'
+    | '/ask'
     | '/library'
     | '/login'
     | '/plugins'
     | '/scheduled'
+    | '/settings'
     | '/chat/$id'
     | '/projects/$id'
     | '/projects'
   id:
     | '__root__'
     | '/'
+    | '/admin'
+    | '/ask'
     | '/library'
     | '/login'
     | '/plugins'
     | '/scheduled'
+    | '/settings'
     | '/chat/$id'
     | '/projects/$id'
     | '/projects/'
@@ -125,10 +161,13 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
+  AskRoute: typeof AskRoute
   LibraryRoute: typeof LibraryRoute
   LoginRoute: typeof LoginRoute
   PluginsRoute: typeof PluginsRoute
   ScheduledRoute: typeof ScheduledRoute
+  SettingsRoute: typeof SettingsRoute
   ChatIdRoute: typeof ChatIdRoute
   ProjectsIdRoute: typeof ProjectsIdRoute
   ProjectsIndexRoute: typeof ProjectsIndexRoute
@@ -141,6 +180,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ask': {
+      id: '/ask'
+      path: '/ask'
+      fullPath: '/ask'
+      preLoaderRoute: typeof AskRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/library': {
@@ -171,6 +224,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ScheduledRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/chat/$id': {
       id: '/chat/$id'
       path: '/chat/$id'
@@ -197,10 +257,13 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
+  AskRoute: AskRoute,
   LibraryRoute: LibraryRoute,
   LoginRoute: LoginRoute,
   PluginsRoute: PluginsRoute,
   ScheduledRoute: ScheduledRoute,
+  SettingsRoute: SettingsRoute,
   ChatIdRoute: ChatIdRoute,
   ProjectsIdRoute: ProjectsIdRoute,
   ProjectsIndexRoute: ProjectsIndexRoute,

@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { toast } from "sonner";
 import { PLAN_ORDER, MODELS } from "@/lib/mira/config";
 import { currentPlan, currentUser, redeemCode, setManualMode, setPlan, setTheme, updateProfile, useMira } from "@/lib/mira/store";
@@ -24,7 +24,7 @@ export const Route = createFileRoute("/settings")({
   component: Settings,
 });
 
-function Row({ title, desc, children }: { title: string; desc?: string; children: React.ReactNode }) {
+function Row({ title, desc, children }: { title: string; desc?: string; children: ReactNode }) {
   return (
     <div className="flex items-center gap-4 py-4">
       <div className="flex-1"><div className="text-sm">{title}</div>{desc && <div className="text-xs text-muted-foreground">{desc}</div>}</div>
